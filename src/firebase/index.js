@@ -4,12 +4,12 @@ import { getAuth, GoogleAuthProvider } from 'firebase/auth'
 
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDdYZXqixahtd97mu919k31qep1p6vLPUA",
-    authDomain: "hi-twitter-c2970.firebaseapp.com",
-    projectId: "hi-twitter-c2970",
-    storageBucket: "hi-twitter-c2970.firebasestorage.app",
-    messagingSenderId: "1001977895497",
-    appId: "1:1001977895497:web:a2ba1925e1659518c17d98"
+    apiKey: import.meta.env.VITE_API_KEY,
+    authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_APP_ID,
 };
 
 
