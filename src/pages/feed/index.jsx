@@ -1,22 +1,26 @@
-import { signOut } from 'firebase/auth'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Aside from './aside'
+import Main from './main'
+import Nav from './nav'
+import { onAuthStateChanged } from 'firebase/auth'
 import { auth } from '../../firebase'
-import { toast } from 'react-toastify'
 
 const Feed = () => {
 
-    const handleClick = () => {
-        signOut(auth)
-            .then(() => toast.info("Çıkış Yapıldı"))
-    }
+    const [user, setUser] = useState(undefined)
 
-    if (!auth.currentUser.emailVerified) return <h1>Bu sayfa görünemez, lütfen mail adresinizi doğrulayınız</h1>
+    useEffect(() => {
+        const unsub = onAuthStateChanged(auth, (user) => setUser(user))
+
+        return () => unsub()
+    }, [])
+
 
     return (
-        <div>
-            <h1>Akış Sayfası</h1>
-
-            <button onClick={handleClick}>Çıkış Yap</button>
+        <div className='h-screen bg-black overflow-hidden text-white grid grid-cols-[1fr_minmax(300px, 600px)_1fr]'>
+            <Nav user={user} />
+            <Main user={user} />
+            <Aside />
         </div>
     )
 }

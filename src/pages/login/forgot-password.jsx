@@ -27,7 +27,7 @@ const ForgotPassword = () => {
     return (
         <>
             <span
-                className='flex  justify-end mt-2 text-end text-sm cursor-pointer text-gray-500 hover:text-gray-400'
+                className='flex justify-end mt-2 text-end text-sm cursor-pointer text-gray-500 hover:text-gray-400'
                 onClick={() => setIsOpen(true)}>Şifreni mi unuttun?</span>
 
             <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
