@@ -30,7 +30,7 @@ const Protected = () => {
     }
 
     return (
-        <Outlet />
+        <Outlet context={user} />
     )
 }
 
