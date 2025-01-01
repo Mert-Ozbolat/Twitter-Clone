@@ -30,7 +30,7 @@ const Nav = ({ user }) => {
 
                     <p className='max-md:hidden'>{user.displayName}</p>
                 </div>
-                <button className='flex justify-center items-center gap-2 text-2xl md:text-base p-1 bg-zinc-700 rounded transition hover:bg-zinc-900 max-md:p-2' onClick={() => signOut(auth)}><BiSolidDoorOpen />
+                <button className='flex justify-center items-center gap-2 text-2xl md:text-base p-1 bg-fourth rounded transition hover:bg-zinc-900 max-md:p-2' onClick={() => signOut(auth)}><BiSolidDoorOpen />
                     <span className='max-md:hidden'>Çıkış Yap</span>
                 </button>
             </div>
