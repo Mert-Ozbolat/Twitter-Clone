@@ -1,12 +1,16 @@
-import { addDoc, collection } from "firebase/firestore";
 import React, { useRef, useState } from "react";
 import { CiImageOn } from "react-icons/ci";
 import { FaRegSmile } from "react-icons/fa";
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineGifBox } from "react-icons/md";
 import { toast } from "react-toastify";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { db } from "../../firebase"
+import uploadToStorage from "../../firebase/uploadToStorage";
+
 
 const Form = ({ user }) => {
+    const [isLoading, setIsLoading] = useState(false)
     const [image, setImage] = useState(null);
     const fileInputRef = useRef(null);
 
@@ -22,6 +26,7 @@ const Form = ({ user }) => {
         fileInputRef.current.files = null;
     };
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -31,14 +36,35 @@ const Form = ({ user }) => {
         if (!text && !file)
             return toast.warning("Please specify the content of the post.");
 
-        const tweetsCol = collection(db, "tweets")
+        try {
+            setIsLoading(true)
 
-        await addDoc(tweetsCol, {
-            content: {
-                text,
-                image: undefined
-            }
-        })
+
+
+            const imageUrl = await uploadToStorage(file)
+
+            const tweetsCol = collection(db, "tweets")
+
+            await addDoc(tweetsCol, {
+                content: {
+                    text,
+                    image: imageUrl
+                },
+                isEdited: false,
+                likes: [],
+                user: {
+                    id: user.uid,
+                    name: user.displayName,
+                    photo: user.photoURL
+                },
+                createdAt: serverTimestamp()
+            })
+            e.target.reset()
+            setImage(null)
+        } catch (error) {
+            console.log(error)
+        }
+        setIsLoading(false)
     };
     return (
         <div className="border-b border-fourth p-4">
@@ -93,7 +119,7 @@ const Form = ({ user }) => {
                         type="submit"
                         className="bg-secondary font-bold px-5 py-[6px] rounded-full text-primary tracking-wide hover:brightness-90"
                     >
-                        Send
+                        {isLoading ? "Loading.." : 'Send'}
                     </button>
                 </div>
             </form>
