@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../../firebase"
 import uploadToStorage from "../../firebase/uploadToStorage";
+import Loader from "../loader";
 
 
 const Form = ({ user }) => {
@@ -116,10 +117,11 @@ const Form = ({ user }) => {
                         </button>
                     </div>
                     <button
+                        disabled={isLoading}
                         type="submit"
-                        className="bg-secondary font-bold px-5 py-[6px] rounded-full text-primary tracking-wide hover:brightness-90"
+                        className="bg-secondary font-bold px-5 py-[6px] rounded-full text-primary tracking-wide hover:brightness-90 min-w-[100px]"
                     >
-                        {isLoading ? "Loading.." : 'Send'}
+                        {isLoading ? <Loader /> : 'Send'}
                     </button>
                 </div>
             </form>
