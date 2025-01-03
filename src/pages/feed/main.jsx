@@ -20,9 +20,6 @@ const Main = ({ user }) => {
         return () => unsub()
     }, [])
 
-
-
-
     return (
         <main className='border border-fourth overflow-y-auto'>
             <header className='border-b border-fourth p-4 font-bold'>Home</header>
@@ -31,7 +28,7 @@ const Main = ({ user }) => {
 
             {
                 !tweets ? (
-                    <Loader designs='my-20' />
+                    <Loader designs='my-20 scale-[1.2]' />
                 ) : (
                     tweets.map((tweet, key) => (
                         <Post key={key} tweet={tweet} />

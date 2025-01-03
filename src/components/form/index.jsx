@@ -129,4 +129,4 @@ const Form = ({ user }) => {
     );
 };
 
-export default Form;
+export default React.memo(Form);
