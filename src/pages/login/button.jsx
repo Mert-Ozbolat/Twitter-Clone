@@ -24,7 +24,7 @@ const Button = () => {
             onClick={handleLogin}
             className='bg-white flex items-center py-2 px-10 rounded-full text-black hover:bg-gray-300 whitespace-nowrap gap-x-2'>
             <img src="google.png" alt="google logo" className='h-[20px]' />
-            <span>Google ile giriş yap</span>
+            <span>Sign in with Google.</span>
         </button>
     )
 }

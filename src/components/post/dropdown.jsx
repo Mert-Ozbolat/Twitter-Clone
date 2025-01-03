@@ -16,8 +16,8 @@ const Dropdown = ({ tweet }) => {
     const handleDelete = () => {
         const tweetRef = doc(db, "tweets", tweet.id);
         deleteDoc(tweetRef)
-            .then(() => toast.info("Tweet akıştan kaldırıldı"))
-            .catch(() => toast.error("Bir sorun oluştu"));
+            .then(() => toast.info("The tweet has been removed from the feed."))
+            .catch(() => toast.error("An issue occurred."));
     };
 
     return (

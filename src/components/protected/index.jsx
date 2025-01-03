@@ -24,7 +24,7 @@ const Protected = () => {
 
     if (user === null || !user?.emailVerified) {
 
-        if (!user?.emailVerified) toast.info('Lütfen mail adresinizi doğrulayınız')
+        if (!user?.emailVerified) toast.info('Please verify your email address.')
         return <Navigate to='/' replace />
 
     }

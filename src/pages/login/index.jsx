@@ -13,7 +13,7 @@ const Login = () => {
                     <img src="" alt="" className='h-[60px]' />
                 </div>
 
-                <h1 className='text-lg font-bold text-center'>Twitter'a Giriş Yaps </h1>
+                <h1 className='text-lg font-bold text-center'>Log in to Twitter.</h1>
 
                 <Button />
 

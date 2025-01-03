@@ -7,8 +7,8 @@ const uploadToStorage = async (file) => {
     if (!file || !file.type.startsWith("image")) return null;
 
     if (file.size > 2097152) {
-        toast.error("Lütfen 2mb altında medya yükleyin");
-        throw new Error("Resim 2mb üstü");
+        toast.error("Please upload media under 2MB.");
+        throw new Error("The image exceeds 2MB.");
     }
 
     const imageRef = ref(storage, v4() + file.name);

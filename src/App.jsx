@@ -11,8 +11,6 @@ const App = () => {
         <Route path='/' element={<Login />} />
         <Route element={<Protected />}>
           <Route path='/feed' element={<Feed />} />
-          <Route path='/ayarlar' element={<h1>deneme</h1>} />
-          <Route path='/mesajlar' element={<h1>deneme</h1>} />
         </Route>
       </Routes>
     </BrowserRouter>

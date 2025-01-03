@@ -1,6 +1,6 @@
 import React from 'react'
 import { navSections } from '../../utils/constants'
-import { signOut } from 'firebase/auth'
+import { signOut } from "firebase/auth";
 import { auth } from '../../firebase'
 import { BiSolidDoorOpen } from 'react-icons/bi'
 
@@ -26,12 +26,14 @@ const Nav = ({ user }) => {
 
             <div className='flex flex-col gap-5'>
                 <div className='flex flex-col items-center gap-2'>
-                    <img src={user?.photoURL} referrerPolicy='no-referrer' className='rounded-full max-w-[145px] shadow-md shadow-[#ffffff3f]' />
+                    <img src={user?.photoURL} referrerPolicy='no-referrer' className='rounded-full max-w-[50px] shadow-md shadow-[#ffffff3f]' />
 
                     <p className='max-md:hidden'>{user.displayName}</p>
                 </div>
-                <button className='flex justify-center items-center gap-2 text-2xl md:text-base p-1 bg-fourth rounded transition hover:bg-zinc-900 max-md:p-2' onClick={() => signOut(auth)}><BiSolidDoorOpen />
-                    <span className='max-md:hidden'>Çıkış Yap</span>
+                <button
+                    className='flex justify-center items-center gap-2 text-2xl md:text-base p-1 bg-fourth rounded transition hover:bg-zinc-900 max-md:p-2'
+                    onClick={() => signOut(auth)}><BiSolidDoorOpen />
+                    <span className='max-md:hidden'>Sign Out</span>
                 </button>
             </div>
         </nav>
@@ -39,7 +41,3 @@ const Nav = ({ user }) => {
 }
 
 export default Nav
-
-
-
-//*+

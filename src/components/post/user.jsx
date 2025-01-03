@@ -15,7 +15,7 @@ const User = ({ tweet }) => {
             {tweet.isEdited && (
                 <p>
                     <MdEdit className="md:hidden" />
-                    <span className=" max-md:hidden text-sm">* Edited</span>
+                    <span className=" max-md:hidden text-sm">edited</span>
                 </p>
             )}
         </div>
