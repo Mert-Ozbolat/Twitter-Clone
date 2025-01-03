@@ -11,7 +11,7 @@ const Buttons = ({ tweet }) => {
     const toogleLike = () => {
         const tweetRef = doc(db, 'tweets', tweet.id)
         updateDoc(tweetRef, {
-            likes: isLiked ? arrayRemove(tweet.user.id) : arrayUnion(tweet.user.id)
+            likes: isLiked ? arrayRemove(auth.currentUser.uid) : arrayUnion(tweet.user.id)
         })
     }
 
