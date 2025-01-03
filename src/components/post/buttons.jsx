@@ -27,11 +27,11 @@ const Buttons = ({ tweet }) => {
                 <FaRetweet />
             </button>
 
-            <button className='flex items-center hover:text-pink-500' onClick={toogleLike}>
+            <button className='flex items-center hover:text-pink-500 relative' onClick={toogleLike}>
                 <div className='post-icon hover:bg-pink-400/20 '>
                     {isLiked ? <FaHeart className='text-pink-700' /> : <FaRegHeart />}
                 </div>
-                <span className={isLiked ? "text-pink-700" : ""}>{tweet.likes.length}</span>
+                <span className={`${isLiked && "text-pink-700"} absolute -end-1`}>{tweet.likes.length}</span>
             </button>
 
             <button className='post-icon hover:text-blue-400 hover:bg-blue-400/20'>
