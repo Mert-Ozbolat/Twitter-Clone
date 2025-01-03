@@ -1,27 +1,40 @@
-import React from 'react'
-import { FaRegComment, FaRegHeart, FaRetweet } from 'react-icons/fa'
+import { FaHeart, FaRegComment, FaRegHeart, FaRetweet } from 'react-icons/fa'
 import { FaShareNodes } from 'react-icons/fa6'
+import { doc, updateDoc, arrayUnion, arrayRemove } from 'firebase/firestore'
+import { db, auth } from '../../firebase/index'
+
 
 const Buttons = ({ tweet }) => {
-    return (
-        <div className='flex justify-between items-center'>
 
-            <button className='post-icon hover:text-blue-400 hover:bg-blue-400/30'>
+    const isLiked = tweet.likes.includes(auth.currentUser.uid)
+
+    const toogleLike = () => {
+        const tweetRef = doc(db, 'tweets', tweet.id)
+        updateDoc(tweetRef, {
+            likes: isLiked ? arrayRemove(tweet.user.id) : arrayUnion(tweet.user.id)
+        })
+    }
+
+
+    return (
+        <div className='flex justify-between items-center text-zinc-500'>
+
+            <button className='post-icon hover:text-blue-400 hover:bg-blue-400/20'>
                 <FaRegComment />
             </button>
 
-            <button className='post-icon hover:text-green-400 hover:bg-green-400/30'>
+            <button className='post-icon hover:text-green-400 hover:bg-green-400/20'>
                 <FaRetweet />
             </button>
 
-            <div className='flex items-center gap-2 hover:text-red-400'>
-                <button className='post-icon hover:bg-red-400/30 '>
-                    <FaRegHeart />
-                    {tweet.likes.length}
-                </button>
-            </div>
+            <button className='flex items-center hover:text-pink-500' onClick={toogleLike}>
+                <div className='post-icon hover:bg-pink-400/20 '>
+                    {isLiked ? <FaHeart className='text-pink-700' /> : <FaRegHeart />}
+                </div>
+                <span className={isLiked ? "text-pink-700" : ""}>{tweet.likes.length}</span>
+            </button>
 
-            <button className='post-icon hover:text-blue-400 hover:bg-blue-400/30'>
+            <button className='post-icon hover:text-blue-400 hover:bg-blue-400/20'>
                 <FaShareNodes />
             </button>
 
